@@ -30,4 +30,7 @@ class CharactersViewModel : ViewModel() {
     val charactersList: LiveData<PagedList<CharactersData>>
         get() = mCharactersList
 
+
+    fun characterAt(position: Int): CharactersData? = mCharactersList.value?.get(position)
+
 }

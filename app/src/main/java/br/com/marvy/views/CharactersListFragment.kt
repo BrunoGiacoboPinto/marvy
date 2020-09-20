@@ -5,17 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.marvy.R
 import br.com.marvy.adapters.CharactersListAdapter
 import br.com.marvy.viewmodel.CharactersViewModel
 import kotlinx.android.synthetic.main.fragment_characters_list.*
-import org.koin.android.viewmodel.ext.android.viewModel
 
 
 class CharactersListFragment : Fragment() {
-
-    private val mCharactersViewModel: CharactersViewModel by viewModel()
     private val mCharactersListAdapter = CharactersListAdapter()
 
     override fun onCreateView(
@@ -26,16 +24,19 @@ class CharactersListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-        mCharactersViewModel.charactersList.observe(
-            viewLifecycleOwner,
-            mCharactersListAdapter::submitList
-        )
+        viewModel.charactersList
+            .observe(viewLifecycleOwner, mCharactersListAdapter::submitList)
 
         with(mCharactersRecyclerView) {
             layoutManager = LinearLayoutManager(activity)
             adapter = mCharactersListAdapter
         }
     }
+
+
+    private val viewModel: CharactersViewModel
+        get() = ViewModelProviders.of(requireActivity())
+            .get(CharactersViewModel::class.java)
+
 
 }

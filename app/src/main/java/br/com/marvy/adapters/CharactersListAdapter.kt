@@ -43,7 +43,7 @@ class CharactersListAdapter :
             holder.name.text = "$name -- $id"
             holder.mCardLayout.setOnClickListener { view ->
                 view.findNavController().navigate(
-                    CharactersListFragmentDirections.toDetail(id)
+                    CharactersListFragmentDirections.toDetail(position)
                 )
             }
 
