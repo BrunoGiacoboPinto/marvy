@@ -23,7 +23,6 @@ class CharacterDetailFragment : Fragment() {
         arguments?.run {
             val item = viewModel.characterAt(getInt("position"))
         }
-
     }
 
 

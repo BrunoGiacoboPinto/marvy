@@ -10,7 +10,9 @@ class MainActivity : AppCompatActivity() {
     private val mCharactersViewModel: CharactersViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.SplashScreenTheme)
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
     }
 }
