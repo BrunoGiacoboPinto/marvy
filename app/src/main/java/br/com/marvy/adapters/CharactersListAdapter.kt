@@ -1,10 +1,10 @@
 package br.com.marvy.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.findNavController
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -25,15 +25,13 @@ val CharactersDataComparator = object : DiffUtil.ItemCallback<CharactersData>() 
 }
 
 
-class CharactersDataViewHolder(private val view: ConstraintLayout) : RecyclerView.ViewHolder(view) {
-    private val mCardLayout: ConstraintLayout = view
-
+class CharactersDataViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
     val name: TextView = view.findViewById(R.id.characterName)
     val poster: ImageView = view.findViewById(R.id.characterPoster)
 
     fun bindTo(data: CharactersData?, position: Int) {
-        name.text = "${data?.name} -- ${data?.id}"
-        mCardLayout.setOnClickListener { view ->
+        name.text = data?.name?.toUpperCase()
+        view.setOnClickListener { view ->
             view.findNavController().navigate(
                 CharactersListFragmentDirections.toDetail(position)
             )
@@ -55,7 +53,7 @@ class CharactersListAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharactersDataViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.characters_list_item, parent, false) as ConstraintLayout
+            .inflate(R.layout.characters_list_item, parent, false)
         return CharactersDataViewHolder(view)
     }
 

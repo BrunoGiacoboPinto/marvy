@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import br.com.marvy.R
 import br.com.marvy.extenstions.viewModel
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_character_detail.*
 
 
 class CharacterDetailFragment : Fragment() {
@@ -22,6 +24,18 @@ class CharacterDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         arguments?.run {
             val item = viewModel.characterAt(getInt("position"))
+
+            characterDetailName.text = item?.name?.toUpperCase()
+
+            val posterUrl =
+                "${item?.thumbnail?.path}/landscape_incredible.${item?.thumbnail?.extension}"
+                    .replace("http", "https")
+
+            Picasso.get()
+                .load(posterUrl)
+                .into(CharacterDetailsPoster)
+
+
         }
     }
 

@@ -3,27 +3,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/CharacterCardItem"
     android:layout_width="match_parent"
+    android:background="@color/light_grey"
     android:layout_marginBottom="8dp"
     android:layout_height="150dp">
 
     <ImageView
         android:id="@+id/characterPoster"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
         android:contentDescription="Character poster image"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <FrameLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/characterName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:gravity="fill_horizontal"
+        android:hint="Character name"
+        android:textColor="@color/light_yellow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/characterPoster"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.122" />
+
+    <!--FrameLayout
+        android:layout_width="0dp"
         android:layout_height="36dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:background="@color/light_grey"
-        app:layout_constraintBottom_toBottomOf="@+id/characterPoster"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toEndOf="@+id/characterPoster">
 
         <TextView
             android:id="@+id/characterName"
@@ -33,6 +51,6 @@
             android:hint="Character name"
             android:textColor="@color/heavy_yellow" />
 
-    </FrameLayout>
+    </FrameLayout-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
