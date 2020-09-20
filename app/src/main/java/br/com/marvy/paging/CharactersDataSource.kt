@@ -66,9 +66,7 @@ class CharactersDataSource : PageKeyedDataSource<Int, CharactersData>() {
 }
 
 class CharactersDataSourceFactory : DataSource.Factory<Int, CharactersData>() {
-
     override fun create(): DataSource<Int, CharactersData> {
         return CharactersDataSource()
     }
-
 }

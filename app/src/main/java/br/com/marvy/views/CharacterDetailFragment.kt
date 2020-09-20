@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import br.com.marvy.R
+import kotlinx.android.synthetic.main.fragment_character_detail.*
 
 
 class CharacterDetailFragment : Fragment() {
@@ -17,9 +18,9 @@ class CharacterDetailFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_character_detail, container, false)
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CharacterDetailFragment()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        arguments?.run {
+            headline.text = "Selected id = ${getInt("id")}"
+        }
     }
 }

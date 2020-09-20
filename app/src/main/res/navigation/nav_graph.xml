@@ -18,7 +18,12 @@
         android:id="@+id/characterDetailFragment"
         android:name="br.com.marvy.views.CharacterDetailFragment"
         android:label="fragment_character_detail"
-        tools:layout="@layout/fragment_character_detail" />
+        tools:layout="@layout/fragment_character_detail">
+
+        <argument
+            android:name="id"
+            app:argType="integer"></argument>
+    </fragment>
 
 
 </navigation>
