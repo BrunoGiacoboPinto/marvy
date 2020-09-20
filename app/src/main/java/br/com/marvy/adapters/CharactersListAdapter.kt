@@ -2,6 +2,7 @@ package br.com.marvy.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.findNavController
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.marvy.R
 import br.com.marvy.model.CharactersData
 import br.com.marvy.views.CharactersListFragmentDirections
+import com.squareup.picasso.Picasso
 
 val CharactersDataComparator = object : DiffUtil.ItemCallback<CharactersData>() {
     override fun areItemsTheSame(oldItem: CharactersData, newItem: CharactersData): Boolean {
@@ -24,8 +26,27 @@ val CharactersDataComparator = object : DiffUtil.ItemCallback<CharactersData>() 
 
 
 class CharactersDataViewHolder(private val view: ConstraintLayout) : RecyclerView.ViewHolder(view) {
-    val mCardLayout: ConstraintLayout = view
-    val name: TextView = view.findViewById<TextView>(R.id.name)
+    private val mCardLayout: ConstraintLayout = view
+
+    val name: TextView = view.findViewById(R.id.characterName)
+    val poster: ImageView = view.findViewById(R.id.characterPoster)
+
+    fun bindTo(data: CharactersData?, position: Int) {
+        name.text = "${data?.name} -- ${data?.id}"
+        mCardLayout.setOnClickListener { view ->
+            view.findNavController().navigate(
+                CharactersListFragmentDirections.toDetail(position)
+            )
+        }
+
+        val posterUrl =
+            "${data?.thumbnail?.path}/portrait_uncanny.${data?.thumbnail?.extension}"
+                .replace("http", "https")
+
+        Picasso.get()
+            .load(posterUrl)
+            .into(poster)
+    }
 }
 
 
@@ -39,14 +60,6 @@ class CharactersListAdapter :
     }
 
     override fun onBindViewHolder(holder: CharactersDataViewHolder, position: Int) {
-        with(getItem(position)!!) {
-            holder.name.text = "$name -- $id"
-            holder.mCardLayout.setOnClickListener { view ->
-                view.findNavController().navigate(
-                    CharactersListFragmentDirections.toDetail(position)
-                )
-            }
-
-        }
+        holder.bindTo(getItem(position), position)
     }
 }

@@ -3,17 +3,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/CharacterCardItem"
     android:layout_width="match_parent"
+    android:layout_marginBottom="8dp"
     android:layout_height="150dp">
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Character name"
-        android:textColor="@color/light_grey"
+    <ImageView
+        android:id="@+id/characterPoster"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="Character poster image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:background="@color/light_grey"
+        app:layout_constraintBottom_toBottomOf="@+id/characterPoster"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/characterName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="fill_horizontal"
+            android:hint="Character name"
+            android:textColor="@color/heavy_yellow" />
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
