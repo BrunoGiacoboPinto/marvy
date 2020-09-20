@@ -5,12 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.marvy.R
+import br.com.marvy.adapters.CharactersListAdapter
+import br.com.marvy.viewmodel.CharactersViewModel
 import kotlinx.android.synthetic.main.fragment_characters_list.*
+import org.koin.android.viewmodel.ext.android.viewModel
 
 
 class CharactersListFragment : Fragment() {
+
+    private val mCharactersViewModel: CharactersViewModel by viewModel()
+    private val mCharactersListAdapter = CharactersListAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -20,14 +26,16 @@ class CharactersListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        listBtn.setOnClickListener { btn ->
-            btn.findNavController()
-                .navigate(R.id.to_detail)
+
+        mCharactersViewModel.charactersList.observe(
+            viewLifecycleOwner,
+            mCharactersListAdapter::submitList
+        )
+
+        with(mCharactersRecyclerView) {
+            layoutManager = LinearLayoutManager(activity)
+            adapter = mCharactersListAdapter
         }
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance() = CharactersListFragment()
-    }
 }

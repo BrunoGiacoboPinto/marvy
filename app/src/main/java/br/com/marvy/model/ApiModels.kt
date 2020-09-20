@@ -1,5 +1,8 @@
 package br.com.marvy.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
 data class CharactersApiResponse(
     val data: CharactersPageData,
     val attributionText: String,
@@ -18,6 +21,7 @@ data class CharactersPageData(
     val count: Int
 )
 
+@Parcelize
 data class CharactersData(
     val comics: CharactersComicsData,
     val thumbnail: CharactersThumbnail,
@@ -26,20 +30,23 @@ data class CharactersData(
     val modified: String,
     val name: String,
     val id: Int
-)
+) : Parcelable
 
+@Parcelize
 data class CharactersThumbnail(
     val extension: String,
     val path: String
-)
+) : Parcelable
 
+@Parcelize
 data class CharactersComicsData(
     val items: List<ResourceURIItem>,
     val collectionURI: String,
     val available: Int
-)
+) : Parcelable
 
+@Parcelize
 data class ResourceURIItem(
     val resourceURI: String,
     val name: String
-)
+) : Parcelable
