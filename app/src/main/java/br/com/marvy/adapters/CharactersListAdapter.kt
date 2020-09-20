@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -26,11 +25,11 @@ val CharactersDataComparator = object : DiffUtil.ItemCallback<CharactersData>() 
 
 
 class CharactersDataViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-    val name: TextView = view.findViewById(R.id.characterName)
+    //val name: TextView = view.findViewById(R.id.characterName)
     val poster: ImageView = view.findViewById(R.id.characterPoster)
 
     fun bindTo(data: CharactersData?, position: Int) {
-        name.text = data?.name?.toUpperCase()
+        //name.text = data?.name?.toUpperCase()
         view.setOnClickListener { view ->
             view.findNavController().navigate(
                 CharactersListFragmentDirections.toDetail(position)
@@ -38,7 +37,7 @@ class CharactersDataViewHolder(private val view: View) : RecyclerView.ViewHolder
         }
 
         val posterUrl =
-            "${data?.thumbnail?.path}/portrait_uncanny.${data?.thumbnail?.extension}"
+            "${data?.thumbnail?.path}/landscape_incredible.${data?.thumbnail?.extension}"
                 .replace("http", "https")
 
         Picasso.get()

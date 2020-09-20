@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.marvy.R
+import br.com.marvy.adapters.ComicsListAdapter
 import br.com.marvy.extenstions.viewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_character_detail.*
@@ -35,7 +37,10 @@ class CharacterDetailFragment : Fragment() {
                 .load(posterUrl)
                 .into(CharacterDetailsPoster)
 
-
+            with(comicsList) {
+                layoutManager = LinearLayoutManager(activity)
+                adapter = ComicsListAdapter(item?.comics?.items)
+            }
         }
     }
 
