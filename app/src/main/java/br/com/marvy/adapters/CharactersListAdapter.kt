@@ -25,11 +25,9 @@ val CharactersDataComparator = object : DiffUtil.ItemCallback<CharactersData>() 
 
 
 class CharactersDataViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-    //val name: TextView = view.findViewById(R.id.characterName)
     val poster: ImageView = view.findViewById(R.id.characterPoster)
 
     fun bindTo(data: CharactersData?, position: Int) {
-        //name.text = data?.name?.toUpperCase()
         view.setOnClickListener { view ->
             view.findNavController().navigate(
                 CharactersListFragmentDirections.toDetail(position)
