@@ -9,16 +9,16 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import br.com.marvy.R
-import br.com.marvy.model.CharactersData
+import br.com.marvy.persistence.CharactersInfo
 import br.com.marvy.views.CharactersListFragmentDirections
 import com.squareup.picasso.Picasso
 
-val CharactersDataComparator = object : DiffUtil.ItemCallback<CharactersData>() {
-    override fun areItemsTheSame(oldItem: CharactersData, newItem: CharactersData): Boolean {
+val CharactersDataComparator = object : DiffUtil.ItemCallback<CharactersInfo>() {
+    override fun areItemsTheSame(oldItem: CharactersInfo, newItem: CharactersInfo): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: CharactersData, newItem: CharactersData): Boolean {
+    override fun areContentsTheSame(oldItem: CharactersInfo, newItem: CharactersInfo): Boolean {
         return oldItem == newItem
     }
 }
@@ -27,26 +27,22 @@ val CharactersDataComparator = object : DiffUtil.ItemCallback<CharactersData>() 
 class CharactersDataViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
     val poster: ImageView = view.findViewById(R.id.characterPoster)
 
-    fun bindTo(data: CharactersData?, position: Int) {
+    fun bindTo(data: CharactersInfo?, position: Int) {
         view.setOnClickListener { view ->
             view.findNavController().navigate(
                 CharactersListFragmentDirections.toDetail(position)
             )
         }
 
-        val posterUrl =
-            "${data?.thumbnail?.path}/landscape_incredible.${data?.thumbnail?.extension}"
-                .replace("http", "https")
-
         Picasso.get()
-            .load(posterUrl)
+            .load(data?.thumbnailPath)
             .into(poster)
     }
 }
 
 
 class CharactersListAdapter :
-    PagedListAdapter<CharactersData, CharactersDataViewHolder>(CharactersDataComparator) {
+    PagedListAdapter<CharactersInfo, CharactersDataViewHolder>(CharactersDataComparator) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharactersDataViewHolder {
         val view = LayoutInflater.from(parent.context)

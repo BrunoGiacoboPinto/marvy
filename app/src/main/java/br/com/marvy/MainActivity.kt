@@ -7,7 +7,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
-    private val mCharactersViewModel: CharactersViewModel by viewModel()
+    val mCharactersViewModel: CharactersViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.SplashScreenTheme)

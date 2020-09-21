@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import br.com.marvy.R
-import br.com.marvy.model.ResourceURIItem
 
 class ComicsItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val headline: TextView = view.findViewById(R.id.comicsHeadline)
@@ -16,7 +15,7 @@ class ComicsItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     }
 }
 
-class ComicsListAdapter(private val mComicsList: List<ResourceURIItem>?) :
+class ComicsListAdapter(private val mComicsList: List<String>?) :
     RecyclerView.Adapter<ComicsItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ComicsItemViewHolder {
@@ -26,7 +25,7 @@ class ComicsListAdapter(private val mComicsList: List<ResourceURIItem>?) :
     }
 
     override fun onBindViewHolder(holder: ComicsItemViewHolder, position: Int) {
-        holder.bind(mComicsList?.get(position)?.name)
+        holder.bind(mComicsList?.get(position))
     }
 
     override fun getItemCount(): Int {

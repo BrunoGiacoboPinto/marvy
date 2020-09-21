@@ -29,17 +29,13 @@ class CharacterDetailFragment : Fragment() {
 
             characterDetailName.text = item?.name?.toUpperCase()
 
-            val posterUrl =
-                "${item?.thumbnail?.path}/landscape_incredible.${item?.thumbnail?.extension}"
-                    .replace("http", "https")
-
             Picasso.get()
-                .load(posterUrl)
+                .load(item?.thumbnailPath)
                 .into(CharacterDetailsPoster)
 
             with(comicsList) {
                 layoutManager = LinearLayoutManager(activity)
-                adapter = ComicsListAdapter(item?.comics?.items)
+                adapter = ComicsListAdapter(item?.comics)
             }
         }
     }
